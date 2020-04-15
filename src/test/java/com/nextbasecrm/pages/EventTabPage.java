@@ -4,12 +4,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utility.Driver;
+import java.util.List;
 
 public class EventTabPage {
-    public EventTabPage(){
+    public EventTabPage() {
         PageFactory.initElements(Driver.getDriver(), this);
     }
-
     @FindBy(id = "feed-add-post-form-tab-calendar")
     public WebElement eventTab;
     @FindBy(name = "EVENT_NAME")
@@ -28,6 +28,14 @@ public class EventTabPage {
     //MY LINK
     @FindBy(xpath = "//body/a")
     public WebElement savedLinkWithText;
+    @FindBy(css = "#blog-submit-button-save")
+    public WebElement sendButton;
+
+    @FindBy(className = "bx-layout-inner-table im-bar-mode")
+    public WebElement activityStreamPostings;
+
+    @FindBy(xpath = "(//div[@id='log_internal_container']//div//div//a[@target='_blank'])")
+    public List<WebElement> listOfAllLinksAttachments;
 
 
     @FindBy(id = "bx-b-uploadfile-blogPostForm_calendar")
@@ -39,12 +47,8 @@ public class EventTabPage {
     @FindBy(name = "bxu_files[]")
     public WebElement uploadFilesAndImagesFromLocal;
 
-    @FindBy(xpath = "//*[@id='blog-submit-button-save']")
-    public WebElement sendButton;
-
     @FindBy(xpath = "//*[@title='Click to insert file']")
     public WebElement fileName;
-
 
 
     /**

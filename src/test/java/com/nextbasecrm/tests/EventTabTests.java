@@ -22,6 +22,7 @@ public class EventTabTests extends TestBase {
     public void linkTest(String linkText, String linkUrl) {
       eventTabPage.attachLink(linkText, linkUrl);
       wait.until(ExpectedConditions.textToBePresentInElement(eventTabPage.savedLinkWithText, linkText));
+      eventTabPage.sendButton.click();
       Assert.assertTrue(eventTabPage.savedLinkWithText.getAttribute("innerHTML").equals(linkText));
     }
 
