@@ -6,6 +6,7 @@ import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import com.nextbasecrm.pages.ActivityStreamPage;
 import com.nextbasecrm.pages.EventTabPage;
 import com.nextbasecrm.pages.LoginPage;
+import com.nextbasecrm.pages.TaskTabPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
@@ -24,10 +25,8 @@ public abstract class TestBase {
     protected WebDriverWait wait;
     protected LoginPage loginPage;
     protected EventTabPage eventTabPage;
-
+    protected TaskTabPage taskTabPage;
     protected SoftAssert softAssert;
-
-
     protected ExtentReports report;
     protected ExtentHtmlReporter htmlReport;
     protected ExtentTest test;
@@ -48,7 +47,7 @@ public abstract class TestBase {
         loginPage = new LoginPage();
         eventTabPage = new EventTabPage();
         activityStreamPage = new ActivityStreamPage();
-
+        taskTabPage=new TaskTabPage();
     }
     @AfterMethod
     public void tearDownMethod() {
