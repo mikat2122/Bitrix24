@@ -1,4 +1,5 @@
 package com.nextbasecrm.tests;
+
 import com.nextbasecrm.base.TestBase;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -8,9 +9,8 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import utility.BrowserUtils;
 import utility.ConfigurationReader;
-
+import static org.testng.Assert.assertEquals;
 import java.util.List;
-
 import static org.testng.Assert.assertTrue;
 
 public class EventTabTests extends TestBase {
@@ -42,6 +42,27 @@ public class EventTabTests extends TestBase {
                         {"Washington Post","https://www.washingtonpost.com/regional/"},
                         {"Economist","https://www.economist.com/"}
                 };
+    }
+
+    @Test
+    public void uploadFileIconTest(){
+        eventTabPage.eventTab.click();
+        eventTabPage.uploadFileIcon.click();
+        assertTrue(eventTabPage.uploadFileMenu.isDisplayed());
+    }
+
+    @Test
+    public void uploadFilesAndImagesFromLocalTest() throws InterruptedException {
+        eventTabPage.eventTab.click();
+        eventTabPage.uploadFileIcon.click();
+
+        eventTabPage.uploadFilesAndImagesFromLocal.sendKeys("src/test/resources/my_file.txt");
+        assertTrue(eventTabPage.fileName.getText().startsWith("my_file"));
+        String expectedFileName = eventTabPage.fileName.getText();
+        eventTabPage.sendButton.click();
+        wait.until(ExpectedConditions.elementToBeClickable(activityStreamPage.firstPostAddedFile));
+        String actualFileName = activityStreamPage.firstPostAddedFile.getText();
+        assertEquals(actualFileName, expectedFileName);
     }
 
 }

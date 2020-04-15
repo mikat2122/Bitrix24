@@ -4,7 +4,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utility.Driver;
-
 import java.util.List;
 
 public class EventTabPage {
@@ -32,6 +31,18 @@ public class EventTabPage {
     public WebElement activityStreamPostings;
     @FindBy(xpath = "(//div[@id='log_internal_container']//div//div//a[@target='_blank'])")
     public List<WebElement> listOfAllLinksAttachments;
+
+    @FindBy(id = "bx-b-uploadfile-blogPostForm_calendar")
+    public WebElement uploadFileIcon;
+
+    @FindBy(id = "divoCalEditorcal_3Jcl")
+    public WebElement uploadFileMenu;
+
+    @FindBy(name = "bxu_files[]")
+    public WebElement uploadFilesAndImagesFromLocal;
+
+    @FindBy(xpath = "//*[@title='Click to insert file']")
+    public WebElement fileName;
 
     public EventTabPage() {
         PageFactory.initElements(Driver.getDriver(), this);

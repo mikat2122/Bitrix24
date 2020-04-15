@@ -3,6 +3,7 @@ package com.nextbasecrm.base;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
+import com.nextbasecrm.pages.ActivityStreamPage;
 import com.nextbasecrm.pages.EventTabPage;
 import com.nextbasecrm.pages.LoginPage;
 import com.nextbasecrm.pages.TaskTabPage;
@@ -30,6 +31,7 @@ public abstract class TestBase {
     protected ExtentReports report;
     protected ExtentHtmlReporter htmlReport;
     protected ExtentTest test;
+    protected ActivityStreamPage activityStreamPage;
 
     @Parameters("url")
     @BeforeMethod
@@ -44,8 +46,8 @@ public abstract class TestBase {
             driver.get(url);
         }
         loginPage = new LoginPage();
-        eventTabPage=new EventTabPage();
-
+        eventTabPage = new EventTabPage();
+        activityStreamPage = new ActivityStreamPage();
         taskTabPage=new TaskTabPage();
     }
     @AfterMethod
