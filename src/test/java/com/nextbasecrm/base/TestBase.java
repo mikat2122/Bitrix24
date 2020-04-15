@@ -25,6 +25,7 @@ public abstract class TestBase {
     protected LoginPage loginPage;
     protected EventTabPage eventTabPage;
     protected TaskTabPage taskTabPage;
+
     protected SoftAssert softAssert;
     protected ExtentReports report;
     protected ExtentHtmlReporter htmlReport;
