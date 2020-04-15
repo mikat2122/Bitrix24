@@ -5,6 +5,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utility.Driver;
 
+import java.util.List;
+
 public class EventTabPage {
     public EventTabPage() {
         PageFactory.initElements(Driver.getDriver(), this);
@@ -29,6 +31,12 @@ public class EventTabPage {
     public WebElement savedLinkWithText;
     @FindBy(css = "#blog-submit-button-save")
     public WebElement sendButton;
+
+    @FindBy(className = "bx-layout-inner-table im-bar-mode")
+    public WebElement activityStreamPostings;
+
+    @FindBy(xpath = "(//div[@id='log_internal_container']//div//div//a[@target='_blank'])")
+    public List<WebElement> listOfAllLinksAttachments;
 
 
 
