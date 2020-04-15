@@ -6,7 +6,9 @@ import org.openqa.selenium.support.PageFactory;
 import utility.Driver;
 
 public class EventTabPage {
-
+    public EventTabPage() {
+        PageFactory.initElements(Driver.getDriver(), this);
+    }
     @FindBy(id = "feed-add-post-form-tab-calendar")
     public WebElement eventTab;
     @FindBy(name = "EVENT_NAME")
@@ -25,10 +27,10 @@ public class EventTabPage {
     //MY LINK
     @FindBy(xpath = "//body/a")
     public WebElement savedLinkWithText;
+    @FindBy(css = "#blog-submit-button-save")
+    public WebElement sendButton;
 
-    public EventTabPage() {
-        PageFactory.initElements(Driver.getDriver(), this);
-    }
+
 
     /**
      * Method allows to attach link to a given pop-up.
