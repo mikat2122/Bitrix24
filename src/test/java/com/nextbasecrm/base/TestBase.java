@@ -7,6 +7,7 @@ import com.nextbasecrm.pages.ActivityStreamPage;
 import com.nextbasecrm.pages.EventTabPage;
 import com.nextbasecrm.pages.LoginPage;
 import com.nextbasecrm.pages.TaskTabPage;
+import com.nextbasecrm.pages.MessageTabPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
@@ -26,6 +27,7 @@ public abstract class TestBase {
     protected LoginPage loginPage;
     protected EventTabPage eventTabPage;
     protected TaskTabPage taskTabPage;
+    protected MessageTabPage messageTab;
 
     protected SoftAssert softAssert;
     protected ExtentReports report;
@@ -49,9 +51,12 @@ public abstract class TestBase {
         eventTabPage = new EventTabPage();
         activityStreamPage = new ActivityStreamPage();
         taskTabPage=new TaskTabPage();
+        messageTab = new MessageTabPage();
+
     }
     @AfterMethod
-    public void tearDownMethod() {
+    public void tearDownMethod() throws InterruptedException {
+    Thread.sleep(3000);
         Driver.closeDriver();
     }
 }
