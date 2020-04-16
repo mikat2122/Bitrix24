@@ -52,6 +52,6 @@ public abstract class TestBase {
     }
     @AfterMethod
     public void tearDownMethod() {
-        Driver.closeDriver();
+      //  Driver.closeDriver();
     }
 }
