@@ -8,11 +8,8 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import utility.BrowserUtils;
 import utility.ConfigurationReader;
-
 import static org.testng.Assert.assertEquals;
-
 import java.util.List;
-
 import static org.testng.Assert.assertTrue;
 
 public class EventTabTests extends TestBase {
@@ -20,6 +17,7 @@ public class EventTabTests extends TestBase {
     @BeforeMethod
     public void setUpMethod() {
         loginPage.login(ConfigurationReader.getProperty("help_desk_username"), ConfigurationReader.getProperty("help_desk_password"));
+        eventTabPage.eventTab.click();
     }
 
     @Test(description = "User should be able to attach link by clicking on the link icon",
@@ -30,7 +28,6 @@ public class EventTabTests extends TestBase {
         driver.switchTo().defaultContent();
         eventTabPage.sendButton.click();
         BrowserUtils.waitForPageToLoad(5);
-        //driver.navigate().refresh();
         wait.until(ExpectedConditions.visibilityOfAllElements(eventTabPage.listOfLinks));
         List<String> listOfLinks = BrowserUtils.getElementsText(eventTabPage.listOfLinks);
         assertTrue(listOfLinks.contains(linkText));
@@ -48,16 +45,13 @@ public class EventTabTests extends TestBase {
 
     @Test
     public void uploadFileIconTest() {
-        eventTabPage.eventTab.click();
         eventTabPage.uploadFileIcon.click();
         assertTrue(eventTabPage.uploadFileMenu.isDisplayed());
     }
 
     @Test
     public void uploadFilesFromLocalTest() throws InterruptedException {
-        eventTabPage.eventTab.click();
         eventTabPage.uploadFileIcon.click();
-
         String path = System.getProperty("user.dir")+"/src/test/resources/my_file.txt";
         eventTabPage.uploadFilesAndImagesFromLocal.sendKeys(path);
         assertTrue(eventTabPage.fileName.getText().startsWith("my_file"));
@@ -70,9 +64,7 @@ public class EventTabTests extends TestBase {
 
     @Test
     public void uploadImagesFromLocalTest() throws InterruptedException {
-        eventTabPage.eventTab.click();
         eventTabPage.uploadFileIcon.click();
-
         String path = System.getProperty("user.dir")+"/src/test/resources/practice picture.png";
         eventTabPage.uploadFilesAndImagesFromLocal.sendKeys(path);
         assertTrue(eventTabPage.fileName.getText().startsWith("practice picture"));
@@ -86,7 +78,6 @@ public class EventTabTests extends TestBase {
     @Test
     public void selectDocumentFromBitrix() throws InterruptedException {
         String actualFileName = "";
-        eventTabPage.eventTab.click();
         eventTabPage.uploadFileIcon.click();
         eventTabPage.selectDocumentsFromBitrix.click();
         eventTabPage.firstBitrixFileToUpload.click();

@@ -63,7 +63,6 @@ public class EventTabPage {
      * @param linkUrl
      */
     public void attachLink(String linkText, String linkUrl) {
-        eventTab.click();
         link.click();
         WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 10);
         wait.until(ExpectedConditions.elementToBeClickable(this.linkText));
