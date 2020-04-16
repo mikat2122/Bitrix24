@@ -19,6 +19,7 @@ public class EventTabTests extends TestBase {
     @BeforeMethod
     public void setUpMethod() {
         loginPage.login(ConfigurationReader.getProperty("help_desk_username"), ConfigurationReader.getProperty("help_desk_password"));
+        eventTabPage.eventTab.click();
     }
 
     @Test(description = "User should be able to attach link by clicking on the link icon",
@@ -29,7 +30,6 @@ public class EventTabTests extends TestBase {
         driver.switchTo().defaultContent();
         eventTabPage.sendButton.click();
         BrowserUtils.waitForPageToLoad(5);
-        //driver.navigate().refresh();
         wait.until(ExpectedConditions.visibilityOfAllElements(eventTabPage.listOfLinks));
         List<String> listOfLinks = BrowserUtils.getElementsText(eventTabPage.listOfLinks);
         assertTrue(listOfLinks.contains(linkText));
@@ -47,14 +47,12 @@ public class EventTabTests extends TestBase {
 
     @Test
     public void uploadFileIconTest() {
-        eventTabPage.eventTab.click();
         eventTabPage.uploadFileIcon.click();
         assertTrue(eventTabPage.uploadFileMenu.isDisplayed());
     }
 
     @Test
     public void uploadFilesAndImagesFromLocalTest() throws InterruptedException {
-        eventTabPage.eventTab.click();
         eventTabPage.uploadFileIcon.click();
 
         eventTabPage.uploadFilesAndImagesFromLocal.sendKeys("src/test/resources/my_file.txt");

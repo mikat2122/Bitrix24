@@ -6,7 +6,6 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utility.Driver;
-
 import java.util.List;
 
 public class EventTabPage {
@@ -55,7 +54,6 @@ public class EventTabPage {
      * @param linkUrl
      */
     public void attachLink(String linkText, String linkUrl) {
-        eventTab.click();
         link.click();
         WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 10);
         wait.until(ExpectedConditions.elementToBeClickable(this.linkText));
