@@ -12,4 +12,10 @@ public class ActivityStreamPage {
 
     @FindBy(xpath = "//div[@class='feed-com-file-wrap']/span[2]/a")
     public WebElement firstPostAddedFile;
+
+    @FindBy(xpath = "//*[starts-with(@id, 'disk-attach-image')]")
+    public WebElement firstPostAddedPicture;
+
+    @FindBy(className = "feed-com-files-title")
+    public WebElement firstPostFileType;
 }
