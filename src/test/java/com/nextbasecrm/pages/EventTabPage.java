@@ -30,7 +30,7 @@ public class EventTabPage {
     @FindBy(className = "bx-layout-inner-table im-bar-mode")
     public WebElement activityStreamPostings;
     @FindBy(xpath = "(//div[@id='log_internal_container']//div//div//a[@target='_blank'])")
-    public List<WebElement> listOfAllLinksAttachments;
+    public List<WebElement> listOfLinksAndUploads;
 
     @FindBy(id = "bx-b-uploadfile-blogPostForm_calendar")
     public WebElement uploadFileIcon;

@@ -27,8 +27,8 @@ public class EventTabTests extends TestBase {
         wait.until(ExpectedConditions.textToBePresentInElement(eventTabPage.savedLinkWithText, linkText));
         driver.switchTo().defaultContent();
         eventTabPage.sendButton.click();
-        List<String> listOfLinks = BrowserUtils.getElementsText(eventTabPage.listOfAllLinksAttachments);
-        wait.until(ExpectedConditions.visibilityOfAllElements(eventTabPage.listOfAllLinksAttachments));
+        List<String> listOfLinks = BrowserUtils.getElementsText(eventTabPage.listOfLinksAndUploads);
+        wait.until(ExpectedConditions.visibilityOfAllElements(eventTabPage.listOfLinksAndUploads));
         assertTrue(listOfLinks.contains(linkText));
 
         //Assert.assertTrue(eventTabPage.savedLinkWithText.getAttribute("innerHTML").equals(linkText));
