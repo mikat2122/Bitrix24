@@ -52,17 +52,35 @@ public class EventTabTests extends TestBase {
     }
 
     @Test
-    public void uploadFilesAndImagesFromLocalTest() throws InterruptedException {
+    public void uploadFilesFromLocalTest() {
         eventTabPage.eventTab.click();
         eventTabPage.uploadFileIcon.click();
 
-        eventTabPage.uploadFilesAndImagesFromLocal.sendKeys("src/test/resources/my_file.txt");
+        String path = System.getProperty("user.dir")+"/src/test/resources/my_file.txt";
+        eventTabPage.uploadFilesAndImagesFromLocal.sendKeys(path);
         assertTrue(eventTabPage.fileName.getText().startsWith("my_file"));
         String expectedFileName = eventTabPage.fileName.getText();
         eventTabPage.sendButton.click();
         wait.until(ExpectedConditions.elementToBeClickable(activityStreamPage.firstPostAddedFile));
         String actualFileName = activityStreamPage.firstPostAddedFile.getText();
         assertEquals(actualFileName, expectedFileName);
+    }
+
+    @Test
+    public void uploadImagesFromLocalTest() throws InterruptedException {
+        eventTabPage.eventTab.click();
+        eventTabPage.uploadFileIcon.click();
+
+        String path = System.getProperty("user.dir")+"/src/test/resources/practice picture.png";
+        eventTabPage.uploadFilesAndImagesFromLocal.sendKeys(path);
+        assertTrue(eventTabPage.fileName.getText().startsWith("practice picture"));
+        String expectedFileName = eventTabPage.fileName.getText();
+        eventTabPage.sendButton.click();
+        wait.until(ExpectedConditions.attributeContains(activityStreamPage.firstPostAddedPicture, "alt", "practice picture"));
+        Thread.sleep(500);
+        String actualFileName = activityStreamPage.firstPostAddedPicture.getAttribute("data-bx-title");
+        assertEquals(actualFileName, expectedFileName);
+
     }
 
 }
