@@ -37,12 +37,12 @@ public abstract class TestBase {
 
     @Parameters("url")
     @BeforeMethod
-    public void setUpMethod(@Optional String url){
+    public void setUpMethod(@Optional String url) {
         driver = Driver.getDriver();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         wait = new WebDriverWait(driver, 5);
         softAssert = new SoftAssert();
-        if(url == null){
+        if (url == null) {
             driver.get(ConfigurationReader.getProperty("url"));
         } else {
             driver.get(url);
@@ -50,13 +50,15 @@ public abstract class TestBase {
         loginPage = new LoginPage();
         eventTabPage = new EventTabPage();
         activityStreamPage = new ActivityStreamPage();
-        taskTabPage=new TaskTabPage();
+        taskTabPage = new TaskTabPage();
         messageTab = new MessageTabPage();
 
     }
+
     @AfterMethod
-    public void tearDownMethod() throws InterruptedException {
-    Thread.sleep(3000);
+
+    public void tearDownMethod() {
         Driver.closeDriver();
+
     }
 }
