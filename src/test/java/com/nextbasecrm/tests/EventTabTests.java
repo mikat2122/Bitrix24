@@ -54,7 +54,7 @@ public class EventTabTests extends TestBase {
     }
 
     @Test
-    public void uploadFilesFromLocalTest() {
+    public void uploadFilesFromLocalTest() throws InterruptedException {
         eventTabPage.eventTab.click();
         eventTabPage.uploadFileIcon.click();
 
@@ -63,7 +63,7 @@ public class EventTabTests extends TestBase {
         assertTrue(eventTabPage.fileName.getText().startsWith("my_file"));
         String expectedFileName = eventTabPage.fileName.getText();
         eventTabPage.sendButton.click();
-        wait.until(ExpectedConditions.elementToBeClickable(activityStreamPage.firstPostAddedFile));
+        BrowserUtils.waitForPageToLoad(5);
         String actualFileName = activityStreamPage.firstPostAddedFile.getText();
         assertEquals(actualFileName, expectedFileName);
     }
@@ -78,8 +78,7 @@ public class EventTabTests extends TestBase {
         assertTrue(eventTabPage.fileName.getText().startsWith("practice picture"));
         String expectedFileName = eventTabPage.fileName.getText();
         eventTabPage.sendButton.click();
-        wait.until(ExpectedConditions.attributeContains(activityStreamPage.firstPostAddedPicture, "alt", "practice picture"));
-        Thread.sleep(500);
+        BrowserUtils.waitForPageToLoad(5);
         String actualFileName = activityStreamPage.firstPostAddedPicture.getAttribute("data-bx-title");
         assertEquals(actualFileName, expectedFileName);
     }
@@ -94,7 +93,7 @@ public class EventTabTests extends TestBase {
         String expectedFileName = eventTabPage.firstBitrixFileToUpload.getText();
         eventTabPage.submitFileFromBitrix.click();
         eventTabPage.sendButton.click();
-        Thread.sleep(3000);
+        BrowserUtils.waitForPageToLoad(5);
         if(activityStreamPage.firstPostFileType.getText().equals("Photo:")){
             actualFileName = activityStreamPage.firstPostAddedPicture.getAttribute("data-bx-title");
         }else if(activityStreamPage.firstPostFileType.getText().equals("Files:")){
