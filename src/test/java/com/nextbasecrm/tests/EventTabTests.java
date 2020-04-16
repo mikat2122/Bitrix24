@@ -1,6 +1,7 @@
 package com.nextbasecrm.tests;
 
 import com.nextbasecrm.base.TestBase;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
@@ -53,17 +54,53 @@ public class EventTabTests extends TestBase {
     }
 
     @Test
-    public void uploadFilesAndImagesFromLocalTest() throws InterruptedException {
+    public void uploadFilesFromLocalTest() throws InterruptedException {
         eventTabPage.eventTab.click();
         eventTabPage.uploadFileIcon.click();
 
-        eventTabPage.uploadFilesAndImagesFromLocal.sendKeys("src/test/resources/my_file.txt");
+        String path = System.getProperty("user.dir")+"/src/test/resources/my_file.txt";
+        eventTabPage.uploadFilesAndImagesFromLocal.sendKeys(path);
         assertTrue(eventTabPage.fileName.getText().startsWith("my_file"));
         String expectedFileName = eventTabPage.fileName.getText();
         eventTabPage.sendButton.click();
-        wait.until(ExpectedConditions.elementToBeClickable(activityStreamPage.firstPostAddedFile));
+        BrowserUtils.waitForPageToLoad(5);
         String actualFileName = activityStreamPage.firstPostAddedFile.getText();
         assertEquals(actualFileName, expectedFileName);
+    }
+
+    @Test
+    public void uploadImagesFromLocalTest() throws InterruptedException {
+        eventTabPage.eventTab.click();
+        eventTabPage.uploadFileIcon.click();
+
+        String path = System.getProperty("user.dir")+"/src/test/resources/practice picture.png";
+        eventTabPage.uploadFilesAndImagesFromLocal.sendKeys(path);
+        assertTrue(eventTabPage.fileName.getText().startsWith("practice picture"));
+        String expectedFileName = eventTabPage.fileName.getText();
+        eventTabPage.sendButton.click();
+        BrowserUtils.waitForPageToLoad(5);
+        String actualFileName = activityStreamPage.firstPostAddedPicture.getAttribute("data-bx-title");
+        assertEquals(actualFileName, expectedFileName);
+    }
+
+    @Test
+    public void selectDocumentFromBitrix() throws InterruptedException {
+        String actualFileName = "";
+        eventTabPage.eventTab.click();
+        eventTabPage.uploadFileIcon.click();
+        eventTabPage.selectDocumentsFromBitrix.click();
+        eventTabPage.firstBitrixFileToUpload.click();
+        String expectedFileName = eventTabPage.firstBitrixFileToUpload.getText();
+        eventTabPage.submitFileFromBitrix.click();
+        eventTabPage.sendButton.click();
+        BrowserUtils.waitForPageToLoad(5);
+        if(activityStreamPage.firstPostFileType.getText().equals("Photo:")){
+            actualFileName = activityStreamPage.firstPostAddedPicture.getAttribute("data-bx-title");
+        }else if(activityStreamPage.firstPostFileType.getText().equals("Files:")){
+            actualFileName = activityStreamPage.firstPostAddedFile.getText();
+        }
+        assertEquals(actualFileName, expectedFileName);
+
     }
 
 }
