@@ -1,15 +1,17 @@
 package com.nextbasecrm.tests;
 
 import com.nextbasecrm.base.TestBase;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import utility.BrowserUtils;
 import utility.ConfigurationReader;
+
 import static org.testng.Assert.assertEquals;
+
 import java.util.List;
+
 import static org.testng.Assert.assertTrue;
 
 public class EventTabTests extends TestBase {
@@ -57,7 +59,7 @@ public class EventTabTests extends TestBase {
         assertTrue(eventTabPage.fileName.getText().startsWith("my_file"));
         String expectedFileName = eventTabPage.fileName.getText();
         eventTabPage.sendButton.click();
-        BrowserUtils.waitForPageToLoad(5);
+        wait.until(ExpectedConditions.elementToBeClickable(activityStreamPage.firstPostAddedFile));
         String actualFileName = activityStreamPage.firstPostAddedFile.getText();
         assertEquals(actualFileName, expectedFileName);
     }
@@ -65,7 +67,7 @@ public class EventTabTests extends TestBase {
     @Test
     public void uploadImagesFromLocalTest() throws InterruptedException {
         eventTabPage.uploadFileIcon.click();
-        String path = System.getProperty("user.dir")+"/src/test/resources/practice picture.png";
+        String path = System.getProperty("user.dir") + "/src/test/resources/practice picture.png";
         eventTabPage.uploadFilesAndImagesFromLocal.sendKeys(path);
         assertTrue(eventTabPage.fileName.getText().startsWith("practice picture"));
         String expectedFileName = eventTabPage.fileName.getText();
@@ -85,13 +87,11 @@ public class EventTabTests extends TestBase {
         eventTabPage.submitFileFromBitrix.click();
         eventTabPage.sendButton.click();
         BrowserUtils.waitForPageToLoad(5);
-        if(activityStreamPage.firstPostFileType.getText().equals("Photo:")){
+        if (activityStreamPage.firstPostFileType.getText().equals("Photo:")) {
             actualFileName = activityStreamPage.firstPostAddedPicture.getAttribute("data-bx-title");
-        }else if(activityStreamPage.firstPostFileType.getText().equals("Files:")){
+        } else if (activityStreamPage.firstPostFileType.getText().equals("Files:")) {
             actualFileName = activityStreamPage.firstPostAddedFile.getText();
         }
         assertEquals(actualFileName, expectedFileName);
-
     }
-
 }
