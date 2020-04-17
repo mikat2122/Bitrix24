@@ -42,8 +42,5 @@ public class AppreciationPageTests extends TestBase {
 
         wait.until(visibilityOf(appreciationPage.sendButton));
         appreciationPage.ClickSendButton();
-        
-        
-        mkmkmk
     }
 }
