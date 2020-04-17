@@ -34,4 +34,8 @@ public class TaskTabPage {
 
     @FindBy(xpath = "//input[@data-bx-id='task-edit-title']")
     public WebElement taskTitle;
+
+    @FindBy(className = "feed-create-task-popup-title")
+    public WebElement taskCreated;
+
 }
