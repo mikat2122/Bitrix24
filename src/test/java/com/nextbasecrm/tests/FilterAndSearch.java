@@ -23,6 +23,10 @@ public class FilterAndSearch extends TestBase {
 
         filterAndSearch.searchIcon.click();
         Thread.sleep(3000);
+        filterAndSearch.dateIcon.click();
+        Thread.sleep(3000);
+
+
 
     }
 

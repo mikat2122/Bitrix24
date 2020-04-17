@@ -14,5 +14,6 @@ public class FilterAndSearch {
     @FindBy(id = "LIVEFEED_search")
     public WebElement searchIcon;
 
-   // @FindBy()
+    @FindBy(className = "main-ui-square-search-item")
+    public WebElement dateIcon;
 }
