@@ -41,9 +41,8 @@ public class TaskTabTests extends TestBase {
         Driver.getDriver().switchTo().parentFrame();
         taskTabPage.sendButton.click();
         wait.until(ExpectedConditions.visibilityOf(taskTabPage.taskCreated));
-          String actualTaskCreated ="";
         String expectedTaskCreated = "Task has been created";
-        actualTaskCreated =taskTabPage.taskCreated.getText();
+        String actualTaskCreated =taskTabPage.taskCreated.getText();
         assertEquals(actualTaskCreated, expectedTaskCreated);
 
     }
