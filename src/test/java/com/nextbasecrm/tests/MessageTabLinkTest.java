@@ -34,6 +34,7 @@ AC-3  User should be able to attach link by clicking on the link icon.
 
         Random number = new Random();  // I need random number because text that I write need be different every time
         int randomNumber = number.nextInt(1000);
+
         String textExpected = "click this link number "+randomNumber; 
 
         wait.until(ExpectedConditions.elementToBeClickable(messageTab.textInput));  // solved with help of Irma
