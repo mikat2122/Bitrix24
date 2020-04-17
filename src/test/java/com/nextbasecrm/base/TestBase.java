@@ -3,6 +3,7 @@ package com.nextbasecrm.base;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
+import com.nextbasecrm.pages.AppreciationPage;
 import com.nextbasecrm.pages.LoginPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -21,10 +22,9 @@ public abstract class TestBase {
     protected WebDriver driver;
     protected WebDriverWait wait;
     protected LoginPage loginPage;
+    protected AppreciationPage appreciationPage;
 
     protected SoftAssert softAssert;
-
-
     protected ExtentReports report;
     protected ExtentHtmlReporter htmlReport;
     protected ExtentTest test;
@@ -44,8 +44,11 @@ public abstract class TestBase {
         loginPage = new LoginPage();
 
     }
+/*
     @AfterMethod
     public void tearDownMethod() {
         Driver.closeDriver();
     }
+*/
+
 }
