@@ -3,11 +3,7 @@ package com.nextbasecrm.base;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
-import com.nextbasecrm.pages.ActivityStreamPage;
-import com.nextbasecrm.pages.EventTabPage;
-import com.nextbasecrm.pages.LoginPage;
-import com.nextbasecrm.pages.TaskTabPage;
-import com.nextbasecrm.pages.MessageTabPage;
+import com.nextbasecrm.pages.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
@@ -25,6 +21,7 @@ public abstract class TestBase {
     protected WebDriver driver;
     protected WebDriverWait wait;
     protected LoginPage loginPage;
+    protected AppreciationPage appreciationPage;
     protected EventTabPage eventTabPage;
     protected TaskTabPage taskTabPage;
     protected MessageTabPage messageTab;
@@ -34,6 +31,7 @@ public abstract class TestBase {
     protected ExtentHtmlReporter htmlReport;
     protected ExtentTest test;
     protected ActivityStreamPage activityStreamPage;
+
 
     @Parameters("url")
     @BeforeMethod
